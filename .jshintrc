@@ -1,0 +1,5 @@
+// Remember to update .jshintrc-lr too....
+{
+  "extends": "./node_modules/jsgreat/es6/.jshintrc",
+  "module": true
+}
