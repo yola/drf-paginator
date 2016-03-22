@@ -86,31 +86,32 @@ export class Paginator {
   }
 
   fetchPage(page) {
-    if (this._hasResponse(page)) {
-      const response = this._getResponse(page);
+    let request;
 
-      return Promise.resolve(response.clone());
-    }
-
-    const request = this._sendRequest(page);
-    const cacheResponse = (response) => {
-      this._cacheResponse(page, response);
-    };
     const makeResponseClone = function() {
       return request.then((res) => res.clone());
     };
-    const parseResponse = this._parseResponse.bind(this);
+
+    if (this._hasRequest(page)) {
+      request = this._getRequest(page);
+
+      return makeResponseClone();
+    }
+
+    request = this._sendRequest(page);
+
+    this._cacheRequest(page, request);
+
+    const parseResponseBody = this._parseResponseBody.bind(this);
     const setLimitIfMissing = (parsed) => {
       if (!this._limit) {
         this._limit = parsed.limit;
       }
     };
 
-    return request
-      .then(cacheResponse)
-      .then(makeResponseClone)
+    return makeResponseClone()
       .then(getResponseBody)
-      .then(parseResponse)
+      .then(parseResponseBody)
       .then(setLimitIfMissing)
       .then(makeResponseClone);
   }
@@ -155,15 +156,15 @@ export class Paginator {
     return queryParams;
   }
 
-  _getResponse(page) {
+  _getRequest(page) {
     return this._cache[page];
   }
 
-  _cacheResponse(page, response) {
+  _cacheRequest(page, response) {
     this._cache[page] = response;
   }
 
-  _hasResponse(page) {
+  _hasRequest(page) {
     return !!this._cache[page];
   }
 
@@ -172,16 +173,16 @@ export class Paginator {
       return this._parsedResponse;
     }
 
-    const parseResponse = this._parseResponse.bind(this);
+    const parseResponseBody = this._parseResponseBody.bind(this);
 
     this._parsedResponse = this.fetchPage(page)
       .then(getResponseBody)
-      .then(parseResponse);
+      .then(parseResponseBody);
 
     return this._parsedResponse;
   }
 
-  _parseResponse(responseBody) {
+  _parseResponseBody(responseBody) {
     const {count, results} = responseBody;
     const limit = this._inferLimit(responseBody);
     let pageCount = 1;
