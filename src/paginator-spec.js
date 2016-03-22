@@ -6,8 +6,7 @@ import Paginator from './paginator';
 import * as request from './helpers/request-spy';
 
 
-const expect = chai.expect;
-const assert = chai.assert;
+const {assert, expect} = chai;
 
 chai.use(chaiAsPromised);
 

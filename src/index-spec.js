@@ -1,10 +1,10 @@
 import chai from 'chai';
 
-import drfp from './index';
+import drfp from './';
 import * as request from './helpers/request-spy';
 
 
-const expect = chai.expect;
+const {expect} = chai;
 
 describe('drf-paginator', function() {
   afterEach(function() {
