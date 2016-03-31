@@ -1,0 +1,5 @@
+[tools]
+linters = jshint
+
+[tool_jshint]
+config = ./.jshintrc-lr
