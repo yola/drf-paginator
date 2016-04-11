@@ -1,0 +1,4 @@
+{
+  "extends": "/srv/lintreview/live/node_modules/jsgreat/es6/.jshintrc",
+  "module": true
+}
