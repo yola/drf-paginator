@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import {QueryHandler, errors} from './limit-offset-query-handler';
+import {LimitOffsetQueryHandler, errors} from './limit-offset-query-handler';
 import PaginatorError from 'src/paginator-error';
 
 const {expect} = chai;
@@ -14,7 +14,7 @@ describe('drf-paginator', function() {
       let handler;
 
       beforeEach(function() {
-        handler = new QueryHandler();
+        handler = new LimitOffsetQueryHandler();
       });
 
       describe('makeParams', function() {

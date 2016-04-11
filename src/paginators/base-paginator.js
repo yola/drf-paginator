@@ -12,7 +12,6 @@ export class BasePaginator {
   constructor(request, requestOptions = null) {
     this._cache = Object.create(null);
     this._page = 0;
-    this._parsedResponse = null;
     this._request = request;
     this._requestOptions = cloneDeep(requestOptions);
     this.queryHandler = null;

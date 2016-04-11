@@ -12,16 +12,24 @@ describe('drf-paginator', function() {
     request.spy.reset();
   });
 
-  it('should export paginators', function() {
-    expect(drfp.paginators).to.exist;
+  it('should export LimitOffsetPaginator', function() {
+    expect(drfp.LimitOffsetPaginator).to.exist;
   });
 
-  it('should export queryHandlers', function() {
-    expect(drfp.queryHandlers).to.exist;
+  it('should export LimitOffsetQueryHandler', function() {
+    expect(drfp.LimitOffsetQueryHandler).to.exist;
   });
 
   it('should export PageMerger', function() {
     expect(drfp.PageMerger).to.exist;
+  });
+
+  it('should export PageNumberPaginator', function() {
+    expect(drfp.PageNumberPaginator).to.exist;
+  });
+
+  it('should export PageNumberQueryHandler', function() {
+    expect(drfp.PageNumberQueryHandler).to.exist;
   });
 
   it('should export PaginatorError', function() {

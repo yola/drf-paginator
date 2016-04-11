@@ -15,7 +15,7 @@ const defaultOptions = {
   offsetQueryParam: 'offset'
 };
 
-export class QueryHandler {
+export class LimitOffsetQueryHandler {
   constructor(options) {
     this.setOptions(options);
   }
@@ -119,4 +119,4 @@ export class QueryHandler {
   }
 }
 
-export default QueryHandler;
+export default LimitOffsetQueryHandler;
