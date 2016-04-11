@@ -1,24 +1,21 @@
 import assign from 'lodash.assign';
 import sinon from 'sinon';
 
+import limitOffsetResponse from 'src/fixtures/limit-offset-response.json';
+import pageNumberResponse from 'src/fixtures/page-number-response.json';
 
-const limitOffsetResponse = require('../fixtures/limit-offset-response.json');
-const pageNumberResponse = require('../fixtures/page-number-response.json');
-
-const state = {
-  status: 200,
-  statusText: 'Success',
-  headers: {
-    'Content-Type': 'application/json'
-  }
-};
 
 export const request = function(options, queryParams) {
-  const fixture = queryParams.page ? pageNumberResponse : limitOffsetResponse;
-  let body = assign({}, fixture);
-  body.__unique__ = Math.random();
-  body = JSON.stringify(body);
-  const response = new Response(body, state);
+  const uniqueValue = Math.random();
+  let fixture;
+
+  if (queryParams.hasOwnProperty('page')) {
+    fixture = pageNumberResponse;
+  } else {
+    fixture = limitOffsetResponse;
+  }
+
+  const response = assign({}, fixture, { uniqueValue });
 
   return Promise.resolve(response);
 };

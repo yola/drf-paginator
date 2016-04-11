@@ -27,12 +27,9 @@ paginator.first()
 ### Creating a paginator using limit-offset pagination style:
 
 ```javascript
-import {Paginator} from 'drf-paginator';
+import {LimitOffsetPaginator} from 'drf-paginator';
 
-
-const limit = 50;
-const style = Paginator.styles.limitOffset;
-const paginator = new Paginator(request, null, {limit}, {style});
+const paginator = new LimitOffsetPaginator(request, null, { limit: 50 });
 ```
 
 ### Fetching all of the results for a given request:
@@ -50,10 +47,10 @@ drfp.all(request)
 ### Using two paginators to iterate over ten pages at a time:
 
 ```javascript
-import {PageMerger, Paginator} from 'drf-paginator';
+import {PageMerger, PageNumberPaginator} from 'drf-paginator';
 
 
-const paginator = new Paginator(request);
+const paginator = new PageNumberPaginator(request);
 const pageMerger = new PageMerger(paginator);
 
 const tenPageRequest = function(options, queryParams) {
@@ -64,7 +61,7 @@ const tenPageRequest = function(options, queryParams) {
   return pageMerger.merge(startPage, endPage);
 };
 
-const tenPagePaginator = Paginator(tenPageRequest);
+const tenPagePaginator = PageNumberPaginator(tenPageRequest);
 ```
 
 ## Options
@@ -83,8 +80,6 @@ const tenPagePaginator = Paginator(tenPageRequest);
   - Currently supports:
     - [`PageNumberPagination`](http://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination)
     - [`LimitOffsetPagination`](http://www.django-rest-framework.org/api-guide/pagination/#limitoffsetpagination)
-  - Pagination styles are available via the `Paginator.styles` object.
-  - Defaults to `Paginator.styles.pageNumber`
 
 ## Request functions
 

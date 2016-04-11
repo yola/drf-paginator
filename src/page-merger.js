@@ -1,3 +1,6 @@
+import reduce from 'lodash.reduce';
+
+
 class PageMerger {
   constructor(paginator) {
     this._count = null;
@@ -6,9 +9,7 @@ class PageMerger {
 
   merge(startPage, endPage) {
     return this._fetchRequests(startPage, endPage)
-      .then(this._makeCollection.bind(this))
-      .then(this._mergeCollection.bind(this))
-      .then(this._makeResponse.bind(this));
+      .then((res) => this._mergeResponses(res));
   }
 
   _fetchRequests(startPage, endPage) {
@@ -22,40 +23,23 @@ class PageMerger {
     return Promise.all(requests);
   }
 
-  _makeCollection(responses) {
-    const collection = [];
-
-    for (let i = 0; i < responses.length; i++) {
-      const response = responses[i];
-
-      collection.push(response.json());
-    }
-
-    return Promise.all(collection);
-  }
-
-  _mergeCollection(collection) {
-    let count = null;
-    let results = [];
-
-    for (let i = 0; i < collection.length; i++) {
-      const responseBody = collection[i];
-
-      if (count < responseBody.count) {
-        count = responseBody.count;
+  _mergeResponses(responses) {
+    const merge = function(result, response) {
+      if (result.count < response.count) {
+        result.count = response.count;
       }
 
-      results = results.concat(responseBody.results);
-    }
+      result.results = result.results.concat(response.results);
 
-    return {
-      count,
-      results
+      return result;
     };
-  }
 
-  _makeResponse(responseBody) {
-    return new Response(JSON.stringify(responseBody));
+    const defaultResult = {
+      count: null,
+      results: []
+    };
+
+    return reduce(responses, merge, defaultResult);
   }
 }
 

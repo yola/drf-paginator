@@ -7,6 +7,9 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       watch: true,
+      paths: [
+        '.'
+      ],
     },
     preprocessors: {
       'src/**/*.js': ['browserify']

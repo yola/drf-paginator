@@ -1,14 +1,28 @@
-import PageMerger from './page-merger';
-import Paginator from './paginator';
+import PageMerger from 'src/page-merger';
+import PaginatorError from 'src/paginator-error';
+import paginators from 'src/paginators';
+import queryHandlers from 'src/query-handlers';
 
 
 export {PageMerger as PageMerger};
-export {Paginator as Paginator};
+export {PaginatorError as PaginatorError};
+export {paginators as paginators};
+export {queryHandlers as queryHandlers};
 
-export const all = function(request, reqOpts, queryParams, options) {
-  const paginator = new Paginator(request, reqOpts, queryParams, options);
+export const paginate = function(request, reqOpts, queryParams) {
+  return new paginators.PageNumberPaginator(request, reqOpts, queryParams);
+};
+
+export const all = function(request, reqOpts, queryParams) {
+  let paginator;
+
+  if (typeof request === 'function') {
+    paginator = paginate(request, reqOpts, queryParams);
+  } else {
+    paginator = request;
+  }
+
   const pageMerger = new PageMerger(paginator);
-
   const mergeAllPages = function(pageCount) {
     return pageMerger.merge(1, pageCount);
   };
@@ -17,15 +31,13 @@ export const all = function(request, reqOpts, queryParams, options) {
     .then(mergeAllPages);
 };
 
-export const paginate = function(request, reqOpts, queryParams, options) {
-  return new Paginator(request, reqOpts, queryParams, options);
-};
-
 const drfPaginator = {
   all,
-  paginate,
   PageMerger,
-  Paginator
+  paginate,
+  PaginatorError,
+  paginators,
+  queryHandlers
 };
 
 export default drfPaginator;
