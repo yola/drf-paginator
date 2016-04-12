@@ -10,7 +10,9 @@
     "test": "unit_tests"
   },
   "scripts": {
-    "test": "karma start karma.unit.conf.js"
+    "jshint": "jshint src",
+    "test": "karma start karma.unit.conf.js && jshint src",
+    "unit": "karma start karma.unit.conf.js"
   },
   "keywords": [
     "django",
