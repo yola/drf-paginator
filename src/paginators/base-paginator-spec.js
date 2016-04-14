@@ -243,14 +243,23 @@ describe('drf-paginator', function() {
         function() {
           const promise = paginator.fetchPage(0);
 
-          return expect(promise).to.eventually.be.rejected;
+          return expect(promise).to.eventually.reject;
         });
 
-      it('returns a rejected promise for pages after the last page',
+      it('rejects pages after the last page when the page count is known',
         function() {
-          const promise = paginator.fetchPage(-3);
+          // The max page of the fixture is 10
+          const promise = paginator.fetchPageCount()
+            .then(() => paginator.fetchPage(13));
 
-          return expect(promise).to.eventually.be.rejected;
+          return expect(promise).to.eventually.reject;
+        });
+
+      it('accepts pages after the last page when the page count is unknown',
+        function() {
+          const promise = paginator.fetchPage(13);
+
+          return expect(promise).to.eventually.resolve;
         });
 
       it('clone responses', function() {

@@ -52,7 +52,7 @@ export class BasePaginator {
         .then(cloneDeep);
     }
     if (!this._isValidPage(page)) {
-      return Promise.reject(new Error());
+      return this._rejectPage(page);
     }
 
     const handleResponse = (response) => {
@@ -96,6 +96,12 @@ export class BasePaginator {
 
   _isValidPage(page) {
     return page >= 1 && (this._pageCount ? page <= this._pageCount : true);
+  }
+
+  _rejectPage(page) {
+    return Promise.reject({
+      detail: `Invalid page "${page}".`
+    });
   }
 
   _sendRequest(page) {
