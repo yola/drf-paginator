@@ -65,43 +65,32 @@ paginator.page === 0;
 See the [Query Handler](#query-handler) section for available methods.
 
 ```javascript
-paginator.queryHandler.setParams({ format: 'json' });
+let queryParams = { format: 'json' };
+paginator.queryHandler.setParams(queryParams);
 ```
 
 #### paginator.current
 
-See [paginator.fetchPage](#paginatorfetchpage) for return details.
-
 ```javascript
-paginator.current()
-  .then(resolve, reject);
+let promise = paginator.current();
 ```
 
 #### paginator.next
 
-See [paginator.fetchPage](#paginatorfetchpage) for return details.
-
 ```javascript
-paginator.next()
-  .then(resolve, reject);
+let promise = paginator.next();
 ```
 
 #### paginator.prev
 
-See [paginator.fetchPage](#paginatorfetchpage) for return details.
-
 ```javascript
-paginator.prev()
-  .then(resolve, reject);
+let promise = paginator.prev();
 ```
 
 #### paginator.first
 
-See [paginator.fetchPage](#paginatorfetchpage) for return details.
-
 ```javascript
-paginator.first()
-  .then(resolve, reject);
+let promise = paginator.first();
 ```
 
 #### paginator.last
@@ -109,30 +98,28 @@ paginator.first()
 _This method doesn't update [`paginator.page`](#paginatorpage) synchronously._
 Operations that rely on `paginator.page` shouldn't be invoked while this method is active.
 
-See [paginator.fetchPage](#paginatorfetchpage) for return details.
-
 ```javascript
-paginator.last()
-  .then(resolve, reject);
+let promise = paginator.last();
 ```
 
 #### paginator.fetchPage
 
 ```javascript
-paginator.fetchPage(42)
-  .then((response) => {
-    let {count, results} = response;
-  });
+let page = 42;
+let promise = paginator.fetchPage(page);
 ```
 
 #### paginator.fetchPageCount
 
 ```javascript
-paginator.fetchPageCount()
-  .then((pageCount) => {});
+let promise = paginator.fetchPageCount();
+
+promise.then((pageCount) => {});
 ```
 
 #### paginator.setQueryHandler
+
+Set the paginator's query handler.
 
 ```javascript
 let queryHandler = new PageNumberQueryHandler();
@@ -141,6 +128,8 @@ paginator.setQueryHandler(queryHandler);
 ```
 
 #### paginator.setQueryParams
+
+Sets the paginator's query parameters. The paginator's current page is set.
 
 ```javascript
 let queryParams = { page: 5 };
@@ -189,10 +178,11 @@ let pageMerger = new PageMerger(paginator)
 let startPage = 20;
 let endPage = 100;
 
-pageMerger.merge(startPage, endPage)
-  .then((response) => {
-    let {count, results} = response;
-  })
+let promise = pageMerger.merge(startPage, endPage);
+
+promise.then((mergedResponse) => {
+  let {count, results} = mergedResponse;
+})
 ```
 
 ### PaginatorError
@@ -220,10 +210,10 @@ new BasePaginator(request[, requestOptions]);
 
 ```javascript
 let paginator = new BasePaginator(request);
-
-paginator.setQueryHandler(queryHandler)
-  .setQueryParams(queryParams);
 ```
+
+A `BasePaginator` instance doesn't have a query handler by default.
+See [`paginator.setQueryHandler`](#paginatorsetqueryhandler) for information.
 
 ### PageNumberPaginator
 
