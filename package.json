@@ -7,6 +7,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
+    "coveralls": "cat coverage/lcov.info | coveralls",
     "jshint": "jshint src",
     "test": "karma start karma.unit.conf.js && jshint src",
     "unit": "karma start karma.unit.conf.js"
@@ -39,10 +40,12 @@
     "browserify": "~13.0.0",
     "chai": "~3.5.0",
     "chai-as-promised": "~5.3.0",
+    "coveralls": "~2.11.9",
     "jsgreat": "~0.1.8",
     "jshint": "~2.9.1",
     "karma": "~0.13.22",
     "karma-browserify": "~5.0.3",
+    "karma-coverage": "~0.5.5",
     "karma-mocha": "~0.2.2",
     "karma-phantomjs-launcher": "~1.0.0",
     "karma-spec-reporter": "0.0.24",

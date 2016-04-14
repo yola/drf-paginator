@@ -11,14 +11,22 @@ module.exports = function(config) {
         '.'
       ],
     },
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        { type: 'text' },
+        { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
+      ]
+    },
     preprocessors: {
-      'src/**/*.js': ['browserify']
+      'src/**/*.js': ['browserify'],
+      'src/**/!(test-setup|*spec|*mock|*stub|*spy).js': ['coverage']
     },
     files: [
       'src/test-setup.js',
       'src/**/*.js'
     ],
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
     singleRun: true,
     browserNoActivityTimeout: 30000
   });
