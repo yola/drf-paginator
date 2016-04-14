@@ -26,7 +26,7 @@ describe('drf-paginator', function() {
           expect(queryParams).to.be.an('object');
         });
 
-        it('throws an error when a limit hasen\'t been set', function() {
+        it('throws an error when a limit hasn\'t been set', function() {
           handler.setParams({ limit: null });
 
           const check = () => handler.makeParams(42);

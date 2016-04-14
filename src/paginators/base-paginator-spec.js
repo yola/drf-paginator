@@ -62,7 +62,7 @@ describe('drf-paginator', function() {
         return expect(promise).to.eventually.resolve;
       });
 
-      it('returns a promise with the a response object', function() {
+      it('returns a promise with a response object', function() {
         const response = paginator.next();
 
         return expect(response).to.eventually.be.an('object');
@@ -77,7 +77,7 @@ describe('drf-paginator', function() {
         return expect(page).to.eventually.equal(1);
       });
 
-      it('calls the request given to the paginator', function() {
+      it('sends a request using the request function', function() {
         const requestCallCount = paginator.next()
           .then(request.getCallCount);
 
@@ -111,7 +111,7 @@ describe('drf-paginator', function() {
         return expect(page).to.eventually.equal(1);
       });
 
-      it('calls the request given to the paginator', function() {
+      it('sends a request using the request function', function() {
         const requestCallCount = paginator.prev()
           .then(request.getCallCount);
 
@@ -145,7 +145,7 @@ describe('drf-paginator', function() {
         return expect(page).to.eventually.equal(1);
       });
 
-      it('calls the request given to the paginator', function() {
+      it('sends a request using the request function', function() {
         const requestCallCount = paginator.first()
           .then(request.getCallCount);
 
@@ -170,7 +170,7 @@ describe('drf-paginator', function() {
         return expect(response).to.eventually.be.an('object');
       });
 
-      it('sets the page to the last page', function() {
+      it('sets the paginator\'s current page to the last page', function() {
         expect(paginator.page).to.equal(0);
 
         const page = paginator.last()
@@ -179,12 +179,13 @@ describe('drf-paginator', function() {
         return expect(page).to.eventually.equal(10);
       });
 
-      it('calls the request given to the paginator', function() {
-        const requestCallCount = paginator.last()
-          .then(request.getCallCount);
+      it('sends requests to get the page count and the last page.',
+        function() {
+          const requestCallCount = paginator.last()
+            .then(request.getCallCount);
 
-        return expect(requestCallCount).to.eventually.equal(2);
-      });
+          return expect(requestCallCount).to.eventually.equal(2);
+        });
     });
 
     describe('current', function() {
@@ -207,7 +208,7 @@ describe('drf-paginator', function() {
         return expect(page).to.eventually.equal(1);
       });
 
-      it('calls the request given to the paginator', function() {
+      it('sends a request using the request function', function() {
         const requestCallCount = paginator.current()
           .then(request.getCallCount);
 
@@ -232,7 +233,7 @@ describe('drf-paginator', function() {
         return expect(response).to.eventually.be.an('object');
       });
 
-      it('calls the request given to the paginator', function() {
+      it('sends a request using the request function', function() {
         const requestCallCount = paginator.fetchPage(1)
           .then(request.getCallCount);
 

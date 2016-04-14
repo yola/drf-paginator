@@ -26,9 +26,9 @@ describe('drf-paginator', function() {
       });
 
       it('returns a promise that successfully resolves', function() {
-        const promsie = pageMerger.merge(1, pageCount);
+        const promise = pageMerger.merge(1, pageCount);
 
-        return expect(promsie).to.eventually.resolve;
+        return expect(promise).to.eventually.resolve;
       });
 
       it('returns a promise with a response object', function() {
@@ -51,7 +51,7 @@ describe('drf-paginator', function() {
         return expect(count).to.eventually.equal(50);
       });
 
-      it('calls the request to fetch each page', function() {
+      it('sends requests to fetch pages', function() {
         const requestCallCount = pageMerger.merge(1, pageCount)
           .then(request.getCallCount);
 

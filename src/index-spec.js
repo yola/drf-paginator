@@ -57,7 +57,7 @@ describe('drf-paginator', function() {
       return expect(response).to.eventually.be.an('object');
     });
 
-    it('calls the request to fetch each page', function() {
+    it('sends requests for each page', function() {
       const pageCount = 10;
       const requestCallCount = drfp.all(request.spy)
         .then(request.getCallCount);
