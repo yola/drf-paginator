@@ -50,14 +50,13 @@
 
 #### paginator.page
 
-This is a [getter][mdn-defineproperty] property.
-
-[mdn-defineproperty]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+This is a property is read-only.
 
 ```javascript
 let paginator = new BasePaginator(request);
-// True
+
 paginator.page === 0;
+// -> true
 ```
 
 #### paginator.queryHandler
@@ -192,10 +191,10 @@ promise.then((mergedResponse) => {
 ```javascript
 let error = new PaginatorError('Something went wrong.');
 
-// True
 error instanceof PaginatorError;
-// True
+// -> true
 error instanceof Error;
+// -> true
 ```
 
 ## Paginators
@@ -226,8 +225,9 @@ new PageNumberPaginator(request[, requestOptions, queryParams]);
 ```javascript
 let queryParams = { page: 2 };
 let paginator = new PageNumberPaginator(request, null, queryParams);
-// True
+
 paginator.page === 2;
+// -> true
 ```
 
 ### LimitOffsetPaginator
@@ -241,8 +241,9 @@ new LimitOffsetPaginator(request[, requestOptions, queryParams]);
 ```javascript
 let queryParams = { limit: 50, offset: 50 };
 let paginator = new LimitOffsetPaginator(request, null, queryParams);
-// True
+
 paginator.page === 2;
+// -> true
 ```
 
 ## Query Handlers
@@ -275,8 +276,8 @@ _Example:_
 let options = { pageQueryParam: 'p' };
 let queryHandler = new PageNumberQueryHandler(options);
 let queryParams = queryHandler.makeParams(42);
-// True
 queryParams.p === 42;
+// -> true
 ```
 
 [drf-page-number-config]: http://www.django-rest-framework.org/api-guide/pagination/#configuration
@@ -320,10 +321,11 @@ let queryHandler = new LimitOffsetQueryHandler(options);
 queryHandler.setParams({ l: 50 });
 
 let queryParams = queryHandler.makeParams(3);
-// True
+
 queryParams.l === 50;
-// True
-queryParams.o === 100;
+// -> true
+queryParams.o === 100
+// -> true;
 ```
 
 ## Utility
@@ -373,7 +375,7 @@ import querystring from 'querystring';
 let request = function(options, queryParams) {
   let {user} = options;
   let query = querystring.stringify(queryParams);
-  let url = `https://example.com/users/${user/}?${query}`;
+  let url = `https://example.com/users/${user}?${query}`;
 
   return fetch(url)
     .then((response) => response.json());
@@ -399,8 +401,8 @@ import {requests} from 'user-image-service';
 /**
  * Create a paginator for the endpoint using an existing request function
  */
-const userPhotoUrls = new drfp.LimitOffsetPaginator(
-  requests.fetchPhotoUrls,
+const userImageUrls = new drfp.LimitOffsetPaginator(
+  requests.fetchImageUrls,
   { user: 'abc123' },
   { limit: 20 }
 );
@@ -408,28 +410,28 @@ const userPhotoUrls = new drfp.LimitOffsetPaginator(
 /**
  * Create a request function that retrieves and merges ten pages of results
  */
-const batchFetchPhotoUrls = function(options, queryParams) {
+const batchFetchImageUrls = function(options, queryParams) {
   const {page} = queryParams;
   const startPage = page * 10 - 9;
   const endPage = page * 10;
-  const pageMerger = new drfp.PageMerger(userPhotoUrls);
+  const pageMerger = new drfp.PageMerger(userImageUrls);
 
   return pageMerger.merge(startPage, endPage);
 };
 
 /**
- * Create a paginator for the new request function
+ * Create a paginator for the batch request function
  */
-let batchUserPhotoUrls = drfp.paginate(batchFetchPhotoUrls);
+const batchUserImageUrls = drfp.paginate(batchFetchImageUrls);
 
 const displayNextImages = function() {
-  return batchUserPhotoUrls.next()
-    .then(displayPhotos)
+  return batchUserImageUrls.next()
+    .then(displayImages)
     .catch(displayError);
 };
 
 /**
- * Display the first page of 200 images
+ * Display the first page of 200 Images
  */
-showNextImages();
+displayNextImages();
 ```
