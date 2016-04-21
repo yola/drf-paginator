@@ -101,6 +101,26 @@ describe('drf-paginator', function() {
 
             expect(page).to.equal(42);
           });
+
+        it('throws an error if no limit is given',
+          function() {
+            const check = function() {
+              handler.resolvePage({
+                offset: 20500
+              });
+            };
+
+            expect(check).to.throw(PaginatorError);
+          });
+
+        it('resolves the first page without a limit being set',
+          function() {
+            const page = handler.resolvePage({
+              offset: 0
+            });
+
+            expect(page).to.equal(1);
+          });
       });
 
       describe('setParams', function() {
@@ -109,6 +129,37 @@ describe('drf-paginator', function() {
 
           expect(result).to.equal(handler);
         });
+      });
+
+      describe('onResponse', function() {
+        it('sets the limit query parameter if missing', function() {
+          const response = {
+            count: 10,
+            results: Array(2)
+          };
+          const page = 1;
+
+          handler.onResponse(response, page);
+
+          const queryParams = handler.makeParams(1);
+
+          expect(queryParams.limit).to.equal(2);
+        });
+
+        it('doesn\'t set the limit query parameter if the page isn\'t one',
+          function() {
+            const response = {
+              count: 10,
+              results: Array(2)
+            };
+            const page = 2;
+
+            handler.onResponse(response, page);
+
+            const queryParams = handler.makeParams(1);
+
+            expect(queryParams.limit).to.be.null;
+          });
       });
 
       describe('setOptions', function() {

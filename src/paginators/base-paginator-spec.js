@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
+import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import {BasePaginator, errors} from 'src/paginators/base-paginator';
@@ -303,6 +304,11 @@ describe('drf-paginator', function() {
     describe('fetchPageCount', function() {
       beforeEach(function() {
         makePaginator();
+        sinon.spy(paginator, 'fetchPage');
+      });
+
+      afterEach(function() {
+        paginator.fetchPage.restore();
       });
 
       it('returns a promise that resolves', function() {
@@ -315,6 +321,14 @@ describe('drf-paginator', function() {
         const pageCount = paginator.fetchPageCount();
 
         return expect(pageCount).to.eventually.equal(10);
+      });
+
+      it('caches the page count', function() {
+        const fetchPageCallCount = paginator.fetchPageCount()
+          .then(() => paginator.fetchPageCount())
+          .then(() => paginator.fetchPage.callCount);
+
+        return expect(fetchPageCallCount).to.eventually.equal(1);
       });
     });
 
