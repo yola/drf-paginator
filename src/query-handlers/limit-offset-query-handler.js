@@ -33,13 +33,16 @@ export class LimitOffsetQueryHandler {
   }
 
   resolvePage(queryParams) {
-    const result = this._parse(queryParams);
+    const {offset, limit} = this._parse(queryParams);
 
-    if (!this._limit) {
-      this._limit = result.limit;
+    if (offset === 0) {
+      return 1;
+    }
+    if (!limit) {
+      throw new PaginatorError(errors.calculatePageNoLimit);
     }
 
-    return this._calculatePage(result.offset);
+    return (offset + limit) / limit;
   }
 
   setParams(queryParams) {
@@ -105,19 +108,6 @@ export class LimitOffsetQueryHandler {
     }
 
     return limit * page - limit;
-  }
-
-  _calculatePage(offset) {
-    const limit = this._limit;
-
-    if (offset === 0) {
-      return 1;
-    }
-    if (!limit) {
-      throw new PaginatorError(errors.calculatePageNoLimit);
-    }
-
-    return (offset + limit) / limit;
   }
 }
 
