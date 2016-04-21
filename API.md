@@ -50,7 +50,7 @@
 
 #### paginator.page
 
-This is a property is read-only.
+This property is read-only.
 
 ```javascript
 let paginator = new BasePaginator(request);
