@@ -17,6 +17,8 @@ const defaultOptions = {
 
 export class LimitOffsetQueryHandler {
   constructor(options) {
+    this._excessParams = null;
+    this._limit = null;
     this.setOptions(options);
   }
 

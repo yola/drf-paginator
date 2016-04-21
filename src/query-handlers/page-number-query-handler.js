@@ -8,6 +8,7 @@ const defaultOptions = {
 
 export class PageNumberQueryHandler {
   constructor(options) {
+    this._excessParams = null;
     this.setOptions(options);
   }
 
