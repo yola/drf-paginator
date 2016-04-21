@@ -38,6 +38,7 @@ export class LimitOffsetQueryHandler {
     if (offset === 0) {
       return 1;
     }
+
     if (!limit) {
       throw new PaginatorError(errors.calculatePageNoLimit);
     }

@@ -51,6 +51,7 @@ export class BasePaginator {
       return this._getRequest(page)
         .then(cloneDeep);
     }
+
     if (!this._isValidPage(page)) {
       return this._rejectPage(page);
     }
@@ -58,6 +59,7 @@ export class BasePaginator {
     const handleResponse = (response) => {
       return this._handleResponse(response, page);
     };
+
     const request = this._sendRequest(page)
       .then(handleResponse);
 
