@@ -245,7 +245,7 @@ describe('drf-paginator', function() {
         function() {
           const promise = paginator.fetchPage(0);
 
-          return expect(promise).to.eventually.reject;
+          return expect(promise).to.eventually.be.rejectedWith(Error);
         });
 
       it('rejects pages after the last page when the page count is known',
@@ -254,7 +254,7 @@ describe('drf-paginator', function() {
           const promise = paginator.fetchPageCount()
             .then(() => paginator.fetchPage(13));
 
-          return expect(promise).to.eventually.reject;
+          return expect(promise).to.eventually.be.rejectedWith(Error);
         });
 
       it('accepts pages after the last page when the page count is unknown',

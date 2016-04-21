@@ -101,9 +101,11 @@ export class BasePaginator {
   }
 
   _rejectPage(page) {
-    return Promise.reject({
-      detail: `Invalid page "${page}".`
-    });
+    const message = `Invalid page "${page}".`;
+    const error = new Error(message);
+    error.response = { detail: message }
+
+    return Promise.reject(error);
   }
 
   _sendRequest(page) {
