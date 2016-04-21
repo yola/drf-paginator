@@ -1,6 +1,6 @@
-export const inferResponseLimit = function(data) {
-  const count = data.count;
-  const resultCount = data.results.length;
+export const inferResponseLimit = function(response) {
+  const count = response.count;
+  const resultCount = response.results.length;
 
   if (count > resultCount) {
     return resultCount;
@@ -9,9 +9,9 @@ export const inferResponseLimit = function(data) {
   return null;
 };
 
-export const parseResponse = function(data) {
-  const {count, results} = data;
-  const limit = inferResponseLimit(data);
+export const parseResponse = function(response) {
+  const {count, results} = response;
+  const limit = inferResponseLimit(response);
   let pageCount = 1;
 
   if (count && limit) {
