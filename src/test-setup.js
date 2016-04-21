@@ -1,4 +1,6 @@
+import appModulePath from 'app-module-path';
 import bluebird from 'bluebird';
 
 
-window.Promise = bluebird;
+appModulePath.addPath(__dirname + '/..');
+global.Promise = bluebird;

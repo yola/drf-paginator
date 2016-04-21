@@ -65,6 +65,11 @@ Please view the [API reference][api] for details and more examples.
 
 A [Promises/A+][promise-spec] compliant promise implementation must be available globally.
 
+Consumers using [Browserify](browserify) must have the [Babelify](babelify) transform.
+
+[babelify]: https://github.com/babel/babelify
+[browserify]: http://browserify.org/
+
 ## Installation
 
 Node.js via [npm](https://www.npmjs.com)
@@ -87,7 +92,7 @@ Install dependencies
 $ npm install
 ```
 
-Run tests and lint
+Run the test suite, generate coverage reports, and lint the source
 
 ```bash
 $ npm test
@@ -103,6 +108,12 @@ Run unit tests
 
 ```bash
 $ npm run unit
+```
+
+Run the test suite, and generate coverage reports
+
+```bash
+$ npm run cover
 ```
 
 Publish coverage report
