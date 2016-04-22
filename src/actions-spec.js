@@ -12,34 +12,27 @@ describe('drf-paginator', function() {
   };
 
   describe('actions', function() {
-    it('should export inferResponseLimit', function() {
-      expect(actions.inferResponseLimit).to.exist;
+    it('should export inferLimit', function() {
+      expect(actions.inferLimit).to.exist;
     });
 
-    it('should export parseResponse', function() {
-      expect(actions.parseResponse).to.exist;
+    it('should export inferPageCount', function() {
+      expect(actions.inferPageCount).to.exist;
     });
 
-    describe('inferResponseLimit', function() {
+    describe('inferLimit', function() {
       it('returns NULL when it can\'t determine the limit', function() {
-        const result = actions.inferResponseLimit(response);
+        const result = actions.inferLimit(response);
 
         expect(result).to.be.null;
       });
     });
 
-    describe('parseResponse', function() {
-      it('parses responses', function() {
-        const result = actions.parseResponse(response);
+    describe('inferPageCount', function() {
+      it('returns `1` when it can\'t determine the page count', function() {
+        const pageCount = actions.inferPageCount(response);
 
-        const expectedResult = {
-          count: 0,
-          limit: null,
-          pageCount: 1,
-          results: response.results
-        };
-
-        expect(result).to.eql(expectedResult);
+        expect(pageCount).to.equal(1);
       });
     });
   });

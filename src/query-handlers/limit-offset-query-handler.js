@@ -56,8 +56,7 @@ export class LimitOffsetQueryHandler {
 
   onResponse(response, page) {
     if (page === 1 && !this._limit) {
-      const result = actions.parseResponse(response);
-      this._limit = result.limit;
+      this._limit = actions.inferLimit(response);
     }
   }
 

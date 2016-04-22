@@ -73,14 +73,15 @@ export class BasePaginator {
       return Promise.resolve(this._pageCount);
     }
 
-    var setPageCount = (parsed) => {
-      this._pageCount = parsed.pageCount;
+    var setPageCount = (pageCount) => {
+      this._pageCount = pageCount;
+
+      return pageCount;
     };
 
     return this.fetchPage(1)
-      .then(actions.parseResponse)
-      .then(setPageCount)
-      .then(() => this._pageCount);
+      .then(actions.inferPageCount)
+      .then(setPageCount);
   }
 
   setQueryHandler(queryHandler) {
