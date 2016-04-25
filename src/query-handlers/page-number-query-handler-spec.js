@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import QueryHandler from 'src/query-handlers/page-number-query-handler';
+import QueryHandler from './page-number-query-handler';
 
 
 const {expect} = chai;

@@ -3,10 +3,10 @@ import chaiAsPromised from 'chai-as-promised';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import {BasePaginator, errors} from 'src/paginators/base-paginator';
-import PaginatorError from 'src/paginator-error';
-import * as queryHandler from 'src/helpers/query-handler-stub';
-import * as request from 'src/helpers/request-spy';
+import {BasePaginator, errors} from './base-paginator';
+import PaginatorError from '../paginator-error';
+import * as queryHandler from '../helpers/query-handler-stub';
+import * as request from '../helpers/request-spy';
 
 
 const {assert, expect} = chai;

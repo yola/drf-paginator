@@ -1,8 +1,8 @@
 import chai from 'chai';
 
-import drfp from 'src';
-import PageNumberPaginator from 'src/paginators/page-number-paginator.js';
-import * as request from 'src/helpers/request-spy';
+import drfp from './';
+import PageNumberPaginator from './paginators/page-number-paginator.js';
+import * as request from './helpers/request-spy';
 
 
 const {expect} = chai;

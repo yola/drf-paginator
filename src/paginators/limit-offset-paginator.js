@@ -1,5 +1,5 @@
-import BasePaginator from 'src/paginators/base-paginator';
-import QueryHandler from 'src/query-handlers/limit-offset-query-handler';
+import BasePaginator from './base-paginator';
+import QueryHandler from '../query-handlers/limit-offset-query-handler';
 
 
 export class LimitOffsetPaginator extends BasePaginator {

@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
 import {LimitOffsetQueryHandler, errors} from './limit-offset-query-handler';
-import PaginatorError from 'src/paginator-error';
+import PaginatorError from '../paginator-error';
 
 const {expect} = chai;
 

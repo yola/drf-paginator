@@ -1,9 +1,9 @@
-import LimitOffsetPaginator from 'src/paginators/limit-offset-paginator';
-import LimitOffsetHandler from 'src/query-handlers/limit-offset-query-handler';
-import PageMerger from 'src/page-merger';
-import PageNumberPaginator from 'src/paginators/page-number-paginator';
-import PageNumberHandler from 'src/query-handlers/page-number-query-handler';
-import PaginatorError from 'src/paginator-error';
+import LimitOffsetPaginator from './paginators/limit-offset-paginator';
+import LimitOffsetHandler from './query-handlers/limit-offset-query-handler';
+import PageMerger from './page-merger';
+import PageNumberPaginator from './paginators/page-number-paginator';
+import PageNumberHandler from './query-handlers/page-number-query-handler';
+import PaginatorError from './paginator-error';
 
 
 export {LimitOffsetPaginator as LimitOffsetPaginator};

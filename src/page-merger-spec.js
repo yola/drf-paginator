@@ -1,9 +1,9 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import PageMerger from 'src/page-merger';
-import PageNumberPaginator from 'src/paginators/page-number-paginator';
-import * as request from 'src/helpers/request-spy';
+import PageMerger from './page-merger';
+import PageNumberPaginator from './paginators/page-number-paginator';
+import * as request from './helpers/request-spy';
 
 
 const {expect} = chai;

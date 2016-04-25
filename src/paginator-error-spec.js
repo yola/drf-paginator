@@ -1,6 +1,6 @@
 import chai from 'chai';
 
-import PaginatorError from 'src/paginator-error';
+import PaginatorError from './paginator-error';
 
 
 const {expect} = chai;

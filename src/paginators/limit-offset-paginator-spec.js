@@ -1,10 +1,10 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 
-import BasePaginator from 'src/paginators/base-paginator';
-import Paginator from 'src/paginators/limit-offset-paginator';
-import QueryHandler from 'src/query-handlers/limit-offset-query-handler';
-import * as request from 'src/helpers/request-spy';
+import BasePaginator from './base-paginator';
+import Paginator from './limit-offset-paginator';
+import QueryHandler from '../query-handlers/limit-offset-query-handler';
+import * as request from '../helpers/request-spy';
 
 
 const {expect} = chai;

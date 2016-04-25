@@ -1,7 +1,7 @@
 import assign from 'lodash.assign';
 import sinon from 'sinon';
 
-import pageNumberResponse from 'src/fixtures/page-number-response.json';
+import pageNumberResponse from '../fixtures/page-number-response.json';
 
 
 export const request = function(options, queryParams) {

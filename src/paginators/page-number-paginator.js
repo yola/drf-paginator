@@ -1,5 +1,5 @@
-import BasePaginator from 'src/paginators/base-paginator';
-import PageNumberHandler from 'src/query-handlers/page-number-query-handler';
+import BasePaginator from './base-paginator';
+import PageNumberHandler from '../query-handlers/page-number-query-handler';
 
 
 export class PageNumberPaginator extends BasePaginator {

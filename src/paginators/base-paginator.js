@@ -1,7 +1,7 @@
 import cloneDeep from 'lodash.clonedeep';
 
-import * as actions from 'src/actions';
-import PaginatorError from 'src/paginator-error';
+import * as actions from '../actions';
+import PaginatorError from '../paginator-error';
 
 
 export const errors = Object.freeze({
