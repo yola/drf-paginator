@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+* Updated several dependencies #8
+
 ## 0.2.0
 
 * The package no longer installs Babel packages as dependencies. #6
