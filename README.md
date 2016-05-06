@@ -65,11 +65,11 @@ Please view the [API reference][api] for details and more examples.
 
 A [Promises/A+][promise-spec] compliant promise implementation must be available globally.
 
-Consuming packages using [Browserify][browserify] must have the [Babelify][babelify] transform, and the [ES2015 preset][babel-preset-es2015] available.
+Consuming packages using [Browserify][] must have the [Babelify][] transform, and the [ES2015 preset][] available.
 
-[babel-preset-es2015]: https://babeljs.io/docs/plugins/preset-es2015/
-[babelify]: https://github.com/babel/babelify
-[browserify]: http://browserify.org/
+[Babelify]: https://github.com/babel/babelify
+[Browserify]: http://browserify.org/
+[ES2015 preset]: https://babeljs.io/docs/plugins/preset-es2015/
 
 ## Installation
 
