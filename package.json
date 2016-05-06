@@ -1,6 +1,6 @@
 {
   "name": "drf-paginator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Yola Engineering <engineering@yola.com>",
   "description": "Module for consuming paginated Django REST framework endpoints.",
   "homepage": "https://github.com/yola/drf-paginator",
