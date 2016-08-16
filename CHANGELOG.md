@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+* Updated several dependencies [#10][]
+
+[#10]: https://github.com/yola/drf-paginator/pull/10
+
 ## 0.2.1
 
 * Updated several dependencies [#8][]
