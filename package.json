@@ -5,11 +5,14 @@
   "description": "Module for consuming paginated Django REST framework endpoints.",
   "homepage": "https://github.com/yola/drf-paginator",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "cjs/index.js",
+  "module": "src/index.js",
   "scripts": {
+    "compile-cjs": "scripts/compile-common-js.sh",
     "cover": "rm -rf coverage && babel-node node_modules/.bin/isparta cover --root src/ --report text --report lcov --report html node_modules/.bin/_mocha -- src/test-setup.js $(find src -name '*-spec.js')",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "jshint": "jshint src",
+    "prepublish": "npm run compile-cjs",
     "test": "npm run cover && npm run jshint",
     "unit": "babel-node node_modules/.bin/_mocha --require src/test-setup.js --recursive src"
   },
@@ -35,7 +38,9 @@
     "lodash.reduce": "~4.5.1"
   },
   "devDependencies": {
-    "babel-cli": "~6.11.4",
+    "babel-cli": "~6.24.1",
+    "babel-plugin-add-module-exports": "~0.2.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "~6.24.1",
     "babel-preset-es2015": "~6.13.2",
     "bluebird": "~3.4.1",
     "chai": "~3.5.0",
@@ -47,11 +52,6 @@
     "mocha": "~3.0.2",
     "sinon": "~1.17.5",
     "sinon-chai": "~2.8.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   },
   "browserify": {
     "transform": [
