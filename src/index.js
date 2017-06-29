@@ -47,4 +47,3 @@ const drfPaginator = {
 };
 
 export default drfPaginator;
-module.exports = drfPaginator;
