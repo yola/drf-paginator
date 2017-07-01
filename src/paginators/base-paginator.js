@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash.clonedeep';
+import _ from 'lodash';
 
 import * as actions from '../actions';
 import PaginatorError from '../paginator-error';
@@ -13,7 +13,7 @@ export class BasePaginator {
     this._cache = Object.create(null);
     this._page = 0;
     this._request = request;
-    this._requestOptions = cloneDeep(requestOptions);
+    this._requestOptions = _.cloneDeep(requestOptions);
     this.queryHandler = null;
   }
 
@@ -49,7 +49,7 @@ export class BasePaginator {
   fetchPage(page) {
     if (this._hasRequest(page)) {
       return this._getRequest(page)
-        .then(cloneDeep);
+        .then(_.cloneDeep);
     }
 
     if (!this._isValidPage(page)) {
@@ -65,7 +65,7 @@ export class BasePaginator {
 
     this._cacheRequest(page, request);
 
-    return request.then(cloneDeep);
+    return request.then(_.cloneDeep);
   }
 
   fetchPageCount() {
@@ -114,7 +114,7 @@ export class BasePaginator {
       throw new PaginatorError(errors.queryHandlerMissing);
     }
 
-    const requestOptions = cloneDeep(this._requestOptions);
+    const requestOptions = _.cloneDeep(this._requestOptions);
     const queryParams = this.queryHandler.makeParams(page);
 
     return this._request(requestOptions, queryParams);

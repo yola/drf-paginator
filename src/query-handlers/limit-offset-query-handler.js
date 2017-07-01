@@ -1,5 +1,4 @@
-import assign from 'lodash.assign';
-import omit from 'lodash.omit';
+import _ from 'lodash';
 
 import * as actions from '../actions';
 import PaginatorError from '../paginator-error';
@@ -24,7 +23,7 @@ export class LimitOffsetQueryHandler {
 
   makeParams(page) {
     const opts = this._options;
-    const queryParams = assign({}, this._excessParams);
+    const queryParams = _.assign({}, this._excessParams);
 
     queryParams[opts.limitQueryParam] = this._limit;
     queryParams[opts.offsetQueryParam] = this._calculateOffset(page);
@@ -61,7 +60,7 @@ export class LimitOffsetQueryHandler {
   }
 
   setOptions(options) {
-    this._options = assign({}, defaultOptions, options);
+    this._options = _.assign({}, defaultOptions, options);
 
     return this;
   }
@@ -72,7 +71,7 @@ export class LimitOffsetQueryHandler {
       limit: null,
       offset: 0
     };
-    const result = assign({}, defaults);
+    const result = _.assign({}, defaults);
 
     if (queryParams.hasOwnProperty(limitQueryParam)) {
       result.limit = queryParams[limitQueryParam];
@@ -93,7 +92,7 @@ export class LimitOffsetQueryHandler {
       opts.offsetQueryParam
     ];
 
-    return omit(queryParams, paginationProperties);
+    return _.omit(queryParams, paginationProperties);
   }
 
   _calculateOffset(page) {

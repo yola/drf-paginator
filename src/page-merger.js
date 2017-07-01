@@ -1,5 +1,4 @@
-import reduce from 'lodash.reduce';
-
+import _ from 'lodash';
 
 class PageMerger {
   constructor(paginator) {
@@ -39,7 +38,7 @@ class PageMerger {
       results: []
     };
 
-    return reduce(responses, merge, defaultResult);
+    return _.reduce(responses, merge, defaultResult);
   }
 }
 

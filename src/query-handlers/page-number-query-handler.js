@@ -1,5 +1,4 @@
-import assign from 'lodash.assign';
-import omit from 'lodash.omit';
+import _ from 'lodash';
 
 
 const defaultOptions = {
@@ -13,7 +12,7 @@ export class PageNumberQueryHandler {
   }
 
   makeParams(page) {
-    const queryParams = assign({}, this._excessParams);
+    const queryParams = _.assign({}, this._excessParams);
 
     queryParams[this._options.pageQueryParam] = page;
 
@@ -32,19 +31,19 @@ export class PageNumberQueryHandler {
   }
 
   setOptions(options) {
-    this._options = assign({}, defaultOptions, options);
+    this._options = _.assign({}, defaultOptions, options);
 
     return this;
   }
 
   _getExcess(queryParams) {
-    return omit(queryParams, [this._options.pageQueryParam]);
+    return _.omit(queryParams, [this._options.pageQueryParam]);
   }
 
   _parse(queryParams) {
     const {pageQueryParam} = this._options;
     const defaults = { page: 0 };
-    const result = assign({}, defaults);
+    const result = _.assign({}, defaults);
 
     if (queryParams.hasOwnProperty(pageQueryParam)) {
       result.page = queryParams[pageQueryParam];
