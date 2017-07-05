@@ -8,11 +8,8 @@ cd "$proj"
 rm -rf cjs/*
 
 echo "Compiling to ES5+CommonJS ..."
-for f in $(find src -name "*.js")
+for f in $(find src -name "*.js" ! -name '*-spec.js')
 do
-    if [[ $f == *"-spec.js"* ]]; then
-        continue
-    fi
     in=$f
     out=${f/src/cjs}
     mkdir -p $(dirname $out)
