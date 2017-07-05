@@ -1,7 +1,12 @@
+.babelrc
+.jshintrc
+.jshintrc-lr
+.lintrc
+.travis.yml
+*-spec.js
 *.log
 *.pid
 *.seed
-cjs
 coverage
 drf-paginator-*.tgz
 lib-cov
@@ -10,3 +15,5 @@ node_modules
 npm-debug.log*
 package
 pids
+scripts
+src/test-setup.js
