@@ -8,7 +8,7 @@ cd "$proj"
 rm -rf cjs
 
 echo "Compiling to ES5+CommonJS ..."
-for f in $(find src -name "*.js" ! -name '*-spec.js')
+for f in $(find src -name "*.js" ! -name "*-spec.js")
 do
     in=$f
     out=${f/src/cjs}
