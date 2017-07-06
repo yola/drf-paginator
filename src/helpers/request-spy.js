@@ -1,4 +1,4 @@
-import assign from 'lodash.assign';
+import _ from 'lodash';
 import sinon from 'sinon';
 
 import pageNumberResponse from '../fixtures/page-number-response.json';
@@ -6,7 +6,7 @@ import pageNumberResponse from '../fixtures/page-number-response.json';
 
 export const request = function(options, queryParams) {
   const uniqueValue = Math.random();
-  const response = assign({}, pageNumberResponse, { uniqueValue });
+  const response = _.assign({}, pageNumberResponse, { uniqueValue });
 
   return Promise.resolve(response);
 };
