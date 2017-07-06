@@ -5,19 +5,11 @@ import PageNumberPaginator from './paginators/page-number-paginator';
 import PageNumberHandler from './query-handlers/page-number-query-handler';
 import PaginatorError from './paginator-error';
 
-
-export {LimitOffsetPaginator as LimitOffsetPaginator};
-export {LimitOffsetHandler as LimitOffsetQueryHandler};
-export {PageMerger as PageMerger};
-export {PageNumberPaginator as PageNumberPaginator};
-export {PageNumberHandler as PageNumberQueryHandler};
-export {PaginatorError as PaginatorError};
-
-export const paginate = function(request, reqOpts, queryParams) {
+const paginate = function(request, reqOpts, queryParams) {
   return new PageNumberPaginator(request, reqOpts, queryParams);
 };
 
-export const all = function(request, reqOpts, queryParams) {
+const all = function(request, reqOpts, queryParams) {
   let paginator;
 
   if (typeof request === 'function') {
@@ -47,4 +39,3 @@ const drfPaginator = {
 };
 
 export default drfPaginator;
-module.exports = drfPaginator;
