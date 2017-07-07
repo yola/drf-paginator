@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+* Added CommonJS support (removed member exports from ES module)
+
 ## 0.2.1
 
 * Updated several dependencies [#8][]
