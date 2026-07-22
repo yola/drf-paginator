@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+* Update `lodash` version to `4.18.1` to fix security vulnerabilities
+
 ## 0.3.0
 
 * Added CommonJS support (removed member exports from ES module)
