@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.3.1
+## 0.4.0
 
-* Update `lodash` version to `4.18.1` to fix security vulnerabilities
+* Update `lodash` version to `4.18.1` to fix security vulnerability
 
 ## 0.3.0
 
